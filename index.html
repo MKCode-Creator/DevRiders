@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevRiders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- ✅ CSS مضمن داخل الصفحة -->
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        
+        .header {
+            justify-content: space-around;
+            display: flex;
+            align-items: center;
+            background-color: #06055717;
+        }
+        
+        .header h1 {
+            color: #00000091;
+            cursor: pointer;
+        }
+        
+        .header span {
+            color: #019901;
+            cursor: pointer;
+        }
+        
+        .header a {
+            text-decoration: none;
+            color: #019901;
+        }
+        
+        .header a:hover {
+            font-size: 20px;
+            color: #000;
+            transition: 0.4s ease;
+            text-decoration: underline;
+        }
+        
+        .header a:active {
+            color: #000;
+            text-decoration: underline;
+            transform: translateY(1px);
+        }
+        
+        .main {
+            background-color: #0a0238;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin: 20px auto;
+        }
+        
+        .main h1 {
+            color: #ffffffcc;
+            cursor: pointer;
+        }
+        
+        .main p {
+            color: #494848;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .main a {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 2px solid #019901;
+            border-radius: 8px;
+            font-size: 20px;
+            transition: all 0.5s ease-in-out;
+            color: #019901;
+            text-decoration: none;
+        }
+        
+        .main a:hover {
+            transform: scale(1.2);
+            border-color: red;
+            color: red;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            border-radius: 20px;
+        }
+        
+        .h1 {
+            font-size: 27px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 100px;
+            max-width: 1800px;
+            width: 100%;
+        }
+        
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            width: 350px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding-bottom: 25px;
+            flex-shrink: 0;
+            margin: 25px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 30px 25px;
+            font-size: 1.8em;
+            font-weight: bold;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(45deg);
+        }
+        
+        .card-body {
+            padding: 0 30px;
+            color: #333;
+            font-size: 1.15em;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .card-body p {
+            margin-bottom: 18px;
+        }
+        
+        .card-footer {
+            padding: 0 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .card-button {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.15em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .card-button:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+        
+        .contact-info-container {
+            background-color: #ffffff;
+            padding: 40px 20px;
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3498db;
+            border-radius: 2px;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .cards-grid.two-columns {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .info-card {
+            background-color: #f8fcfd;
+            border: 1px solid #e1ecf4;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-card .icon {
+            font-size: 3em;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.6em;
+        }
+        
+        .info-card p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .info-card a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .info-card a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer-content p {
+            margin: 0 0 10px 0;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            .card {
+                width: 95%;
+                max-width: 400px;
+                margin: 15px;
+            }
+            body {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Dev<span>Riders</span></h1>
+        <a href="#home">Home</a>
+        <a href="#project">Projects</a>
+        <a href="#contact-me">Contact Me</a>
+    </div>
+
+    <div id="home" class="main">
+        <h1>DevRiders</h1>
+        <p>نحن مبرمجون نتطلع للأفضل دائما</p>
+        <a href="#project">View My Projects</a>
+    </div>
+
+    <div id="project" class="project">
+        <h2 class="h1">Projects</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-header">Geometry Dash X</div>
+                <div class="card-body">
+                    <p>Game 2025</p>
+                    <p>.من أصعب الألعاب في العالم وهي أيضًا من تطبيق سكراتش</p>
+                </div>
+                <div class="card-footer">
+                    <a href="Geometry Dash X.sb3" class="card-button">تحميل</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Subway Surfers</div>
+                <div class="card-body">
+                    <p>Game 2025</p>
+                    <p>.لعبة الطفولة الآن على موقعنا من سكراتش</p>
+                </div>
+                <div class="card-footer">
+                    <a href="Subway_Surfers.sb3" class="card-button">تحميل</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Snail Mail</div>
+                <div class="card-body">
+                    <p>Game 2004</p>
+                    <p>.من الألعاب الرائعة التي دائمًا فيها تحدي</p>
+                </div>
+                <div class="card-footer">
+                    <a href="Snail-Mail.7z" class="card-button">تحميل</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Tom and Jerry</div>
+                <div class="card-body">
+                    <p>Game 2025</p>
+                    <p>.من الألعاب التي تجعلك في عالم توم وجيري</p>
+                </div>
+                <div class="card-footer">
+                    <a href="Tom and Jerry.sb3" class="card-button">تحميل</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-me" class="contact-info-container">
+        <h2>Mohamed Ahmed</h2>
+        <div class="cards-grid two-columns">
+            <div class="info-card">
+                <i class="fas fa-phone-alt icon"></i>
+                <h3>رقم الهاتف</h3>
+                <p>+201013621554</p>
+                <p><a href="tel:+201013621554">اتصل بي الآن</a></p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-envelope icon"></i>
+                <h3>البريد الإلكتروني</h3>
+                <p>mohamedahmedgamil1@gmail.com</p>
+                <p><a href="mailto:mohamedahmedgamil1@gmail.com">ارسل لي رسالة</a></p>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="info-card">
+                <i class="fas fa-globe icon"></i>
+                <h3>الموقع الإلكتروني</h3>
+                <p>الموقع الشخصي أو المدونة</p>
+                <p><a href="https://mohamedahmedgamil1.github.io/Mohamed-Ahmed-Gamil/" target="_blank">زيارة الموقع</a></p>
+            </div>
+        </div>
+
+        <hr style="margin: 50px 0; border: 0; border-top: 1px dashed #cccccc;">
+
+        <h2>Mohamed Khaled</h2>
+        <div class="cards-grid two-columns">
+            <div class="info-card">
+                <i class="fas fa-phone-alt icon"></i>
+                <h3>رقم الهاتف</h3>
+                <p>+201070200571</p>
+                <p><a href="tel:+201070200571">اتصل بي الآن</a></p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-envelope icon"></i>
+                <h3>البريد الإلكتروني</h3>
+                <p>mohamedkhaledabdalsattar@gmail.com</p>
+                <p><a href="mailto:mohamedkhaledabdalsattar@gmail.com">ارسل لي رسالة</a></p>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="info-card">
+                <i class="fas fa-globe icon"></i>
+                <h3>الموقع الإلكتروني</h3>
+                <p>الموقع الشخصي أو المدونة</p>
+                <p><a href="https://khaledabdelsa.github.io/MkGamer/" target="_blank">زيارة الموقع</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
